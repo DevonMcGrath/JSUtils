@@ -1,0 +1,2 @@
+# JSUtils
+JavaScript utility functions
