@@ -2,6 +2,7 @@
  * Author: Devon McGrath (https://github.com/DevonMcGrath)
  * Description: This JavaScript file contains functionality to parse CSV files.
  * Version History:
+ * 2019-10-31 1.1 Fixed issue in toCSV not creating escaped quotes
  * 2019-02-27 1.0 Initial Version: added fromCSV(...) and toCSV(...)
  *
  * Global Objects Introduced:
@@ -208,7 +209,7 @@ JSParser.toCSV = function(rows, delimiter) {
             // Add the data
             if (v.indexOf('"') >= 0 || v.indexOf('\r') >= 0 ||
                 v.indexOf('\n') >= 0 || v.indexOf(delimiter) >= 0) {
-                v = '"' + v + '"';
+                v = '"' + v.replace(/"/g, '""') + '"';
             }
             rdata += v + delimiter;
         }
